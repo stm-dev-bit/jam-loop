@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Button, Typography, Alert } from "@mui/material";
 import CustomInput from "./CustomInput";
+import { useAuth } from "../providers/AuthProvider";
+import { useRouter } from "next/navigation";
 import { userMock } from "../mock/userMock";
 
 interface IFormInput {
@@ -12,12 +14,20 @@ interface IFormInput {
 }
 
 const LoginForm: React.FC = () => {
+  const { login, isAuthenticated } = useAuth();
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<IFormInput>();
+  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push("/campaigns");
+    }
+  }, [isAuthenticated, router]);
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     const user = userMock.find(
@@ -25,7 +35,8 @@ const LoginForm: React.FC = () => {
     );
     if (user) {
       setError(null);
-      console.log("Login successful!");
+      login(data.email);
+      router.push("/campaigns");
     } else {
       setError("Invalid email or password");
     }

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import ReactQueryProvider from "./providers/ReactQueryProvider";
+import { AuthProvider } from "./providers/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ReactQueryProvider>
-          <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+          <AppRouterCacheProvider>
+            <AuthProvider>{children}</AuthProvider>
+          </AppRouterCacheProvider>
         </ReactQueryProvider>
       </body>
     </html>
