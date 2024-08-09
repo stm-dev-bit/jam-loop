@@ -21,7 +21,7 @@ const LoginForm: React.FC = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push("/campaigns");
+      router.push("/");
     }
   }, [isAuthenticated, router]);
 
