@@ -5,20 +5,10 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Button, Box } from "@mui/material";
 import CustomInput from "../CustomInput";
 import { useCreateCampaign, useUpdateCampaign } from "../../hooks/useCampaigns";
-
-interface IFormInput {
-  name: string;
-  budget: number;
-  startDate: string;
-  endDate: string;
-  demographic: string;
-  geo: string;
-  inventory: string;
-  devices: string;
-}
+import { Campaign, CreateCampaign } from "../../@types/campaignTypes";
 
 interface CreateCampaignFormProps {
-  defaultValues?: IFormInput;
+  defaultValues?: Campaign;
   onClose: () => void;
 }
 
@@ -26,7 +16,7 @@ const CreateCampaignForm: React.FC<CreateCampaignFormProps> = ({
   defaultValues,
   onClose,
 }) => {
-  const { control, handleSubmit, reset } = useForm<IFormInput>({
+  const { control, handleSubmit, reset } = useForm<CreateCampaign>({
     defaultValues,
   });
   const { mutate: createCampaign } = useCreateCampaign();
@@ -38,7 +28,7 @@ const CreateCampaignForm: React.FC<CreateCampaignFormProps> = ({
     }
   }, [defaultValues, reset]);
 
-  const onSubmit: SubmitHandler<IFormInput> = (variables) => {
+  const onSubmit: SubmitHandler<CreateCampaign> = (variables) => {
     const { _id, ...rest } = variables as any;
 
     const campaign = {
@@ -92,7 +82,6 @@ const CreateCampaignForm: React.FC<CreateCampaignFormProps> = ({
       <Controller
         name="budget"
         control={control}
-        defaultValue={0}
         render={({ field }) => (
           <CustomInput
             type="number"
@@ -135,7 +124,6 @@ const CreateCampaignForm: React.FC<CreateCampaignFormProps> = ({
       <Controller
         name="demographic"
         control={control}
-        defaultValue=""
         render={({ field }) => (
           <CustomInput label="Target Demographic" required {...field} />
         )}
@@ -143,7 +131,6 @@ const CreateCampaignForm: React.FC<CreateCampaignFormProps> = ({
       <Controller
         name="geo"
         control={control}
-        defaultValue=""
         render={({ field }) => (
           <CustomInput label="Target Geo" required {...field} />
         )}
@@ -151,7 +138,6 @@ const CreateCampaignForm: React.FC<CreateCampaignFormProps> = ({
       <Controller
         name="inventory"
         control={control}
-        defaultValue=""
         render={({ field }) => (
           <CustomInput
             label="Inventory (comma separated)"
@@ -163,7 +149,6 @@ const CreateCampaignForm: React.FC<CreateCampaignFormProps> = ({
       <Controller
         name="devices"
         control={control}
-        defaultValue=""
         render={({ field }) => (
           <CustomInput label="Devices (comma separated)" required {...field} />
         )}

@@ -7,11 +7,7 @@ import CustomInput from "../CustomInput";
 import { useAuth } from "../../providers/AuthProvider";
 import { useRouter } from "next/navigation";
 import { userMock } from "../../mock/userMock";
-
-interface IFormInput {
-  email: string;
-  password: string;
-}
+import { Login } from "../../@types/authTypes";
 
 const LoginForm: React.FC = () => {
   const { login, isAuthenticated } = useAuth();
@@ -19,7 +15,7 @@ const LoginForm: React.FC = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormInput>();
+  } = useForm<Login>();
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
 
@@ -29,13 +25,14 @@ const LoginForm: React.FC = () => {
     }
   }, [isAuthenticated, router]);
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+  const onSubmit: SubmitHandler<Login> = (variables) => {
     const user = userMock.find(
-      (user) => user.email === data.email && user.password === data.password
+      (user) =>
+        user.email === variables.email && user.password === variables.password
     );
     if (user) {
       setError(null);
-      login(data.email);
+      login(variables.email);
       router.push("/campaigns");
     } else {
       setError("Invalid email or password");
@@ -52,7 +49,6 @@ const LoginForm: React.FC = () => {
           <Controller
             name="email"
             control={control}
-            defaultValue=""
             rules={{ required: "Email is required" }}
             render={({ field }) => (
               <CustomInput
@@ -72,7 +68,6 @@ const LoginForm: React.FC = () => {
           <Controller
             name="password"
             control={control}
-            defaultValue=""
             rules={{ required: "Password is required" }}
             render={({ field }) => (
               <CustomInput
