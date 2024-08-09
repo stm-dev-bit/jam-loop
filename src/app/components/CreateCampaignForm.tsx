@@ -38,19 +38,28 @@ const CreateCampaignForm: React.FC<CreateCampaignFormProps> = ({
     }
   }, [defaultValues, reset]);
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+  const onSubmit: SubmitHandler<IFormInput> = (variables) => {
+    const { _id, ...rest } = variables as any;
+
     const campaign = {
-      ...data,
-      inventory: data.inventory.split(","),
-      devices: data.devices.split(","),
+      ...rest,
+      inventory: Array.isArray(rest.inventory)
+        ? rest.inventory
+        : rest.inventory.split(","),
+      devices: Array.isArray(rest.devices)
+        ? rest.devices
+        : rest.devices.split(","),
     };
 
-    if (defaultValues) {
+    if (_id) {
       updateCampaign(
-        { id: (defaultValues as any)._id, updatedCampaign: campaign },
+        { id: _id, updatedCampaign: campaign },
         {
           onSuccess: () => {
             onClose();
+          },
+          onError: (error) => {
+            console.error("Update campaign failed:", error);
           },
         }
       );
@@ -58,6 +67,9 @@ const CreateCampaignForm: React.FC<CreateCampaignFormProps> = ({
       createCampaign(campaign, {
         onSuccess: () => {
           onClose();
+        },
+        onError: (error) => {
+          console.error("Create campaign failed:", error);
         },
       });
     }
