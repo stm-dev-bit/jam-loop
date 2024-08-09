@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Button, Box } from "@mui/material";
-import CustomInput from "./CustomInput";
-import { useCreateCampaign, useUpdateCampaign } from "../hooks/useCampaigns";
+import CustomInput from "../CustomInput";
+import { useCreateCampaign, useUpdateCampaign } from "../../hooks/useCampaigns";
 
 interface IFormInput {
   name: string;

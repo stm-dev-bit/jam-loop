@@ -1,7 +1,7 @@
 "use client";
 
 import { Modal, Box, Typography, Button } from "@mui/material";
-import CreateCampaignForm from "./CreateCampaignForm";
+import CreateCampaignForm from "../CreateCampaignForm";
 
 interface CreateCampaignModalProps {
   open: boolean;

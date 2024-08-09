@@ -1,7 +1,7 @@
 "use client";
 
 import { useQueryClient } from "@tanstack/react-query";
-import React, {
+import {
   createContext,
   useContext,
   useState,

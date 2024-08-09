@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Button, Typography, Alert } from "@mui/material";
-import CustomInput from "./CustomInput";
-import { useAuth } from "../providers/AuthProvider";
+import CustomInput from "../CustomInput";
+import { useAuth } from "../../providers/AuthProvider";
 import { useRouter } from "next/navigation";
-import { userMock } from "../mock/userMock";
+import { userMock } from "../../mock/userMock";
 
 interface IFormInput {
   email: string;
