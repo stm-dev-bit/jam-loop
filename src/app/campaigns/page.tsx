@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import PrivateRoute from "../components/PrivateRoute";
-import CreateCampaignModal from "../components/CreateCampaignModal";
+import CreateCampaignModal from "../components/modals/CreateCampaignModal";
 import CampaignsTable from "../components/CampaignsTable";
 import { Container, Box } from "@mui/material";
 import Navbar from "../components/Navbar";

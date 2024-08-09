@@ -1,24 +1,61 @@
+import {
+  Campaign,
+  CreateCampaign,
+  UpdateCampaign,
+} from "../@types/campaignTypes";
 import axiosClient from "./axiosClient";
 
 const BASE_PATH = "/campaigns";
 
-export const fetchCampaigns = async () => {
+/**
+ * Fetches campaigns for the currently logged-in user.
+ *
+ * @returns {Promise<Campaign[]>} A promise that resolves to an array of campaigns
+ * filtered by the current user's username.
+ */
+export const fetchCampaigns = async (): Promise<Campaign[]> => {
   const username = localStorage.getItem("username");
-  const response = await axiosClient.get(BASE_PATH);
-  return response.data.filter(
-    (campaign: any) => campaign.username === username
-  );
+  const response = await axiosClient.get<Campaign[]>(BASE_PATH);
+  return response.data.filter((campaign) => campaign.username === username);
 };
 
-export const createCampaign = async (campaign: any) => {
+/**
+ * Creates a new campaign for the current user.
+ *
+ * @param {CreateCampaign} campaign - The campaign data to be created.
+ * @returns {Promise<Campaign>} A promise that resolves to the created campaign data.
+ */
+export const createCampaign = async (
+  campaign: CreateCampaign
+): Promise<Campaign> => {
   const username = localStorage.getItem("username");
-  return axiosClient.post(BASE_PATH, { ...campaign, username });
+  const response = await axiosClient.post<Campaign>(BASE_PATH, {
+    ...campaign,
+    username,
+  });
+  return response.data;
 };
 
-export const updateCampaign = async (id: string, updatedCampaign: any) => {
-  return axiosClient.put(`${BASE_PATH}/${id}`, updatedCampaign);
+/**
+ * Updates an existing campaign by its ID.
+ *
+ * @param {string} id - The ID of the campaign to be updated.
+ * @param {UpdateCampaign} updatedCampaign - The updated campaign data.
+ * @returns {Promise<void>} A promise that resolves when the update is complete.
+ */
+export const updateCampaign = async (
+  id: string,
+  updatedCampaign: UpdateCampaign
+): Promise<void> => {
+  await axiosClient.put(`${BASE_PATH}/${id}`, updatedCampaign);
 };
 
-export const deleteCampaign = async (id: string) => {
-  return axiosClient.delete(`${BASE_PATH}/${id}`);
+/**
+ * Deletes a campaign by its ID.
+ *
+ * @param {string} id - The ID of the campaign to be deleted.
+ * @returns {Promise<void>} A promise that resolves when the campaign is deleted.
+ */
+export const deleteCampaign = async (id: string): Promise<void> => {
+  await axiosClient.delete(`${BASE_PATH}/${id}`);
 };

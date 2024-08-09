@@ -12,8 +12,8 @@ import {
   Paper,
   Button,
 } from "@mui/material";
-import CreateCampaignModal from "./CreateCampaignModal";
-import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import CreateCampaignModal from "./modals/CreateCampaignModal";
+import DeleteConfirmationModal from "./modals/DeleteConfirmationModal";
 
 const CampaignsTable: React.FC = () => {
   const { data: campaigns, isLoading, isError } = useCampaigns();
