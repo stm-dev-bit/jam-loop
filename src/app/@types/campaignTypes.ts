@@ -1,4 +1,3 @@
-import { updateCampaign } from "./../api/campaigns";
 /**
  * @file campaignTypes.ts
  *

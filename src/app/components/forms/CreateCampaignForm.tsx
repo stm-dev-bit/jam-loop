@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Button, Box } from "@mui/material";
 import CustomInput from "../CustomInput";
-import { useCreateCampaign, useUpdateCampaign } from "../../hooks/useCampaigns";
+import { useCreateCampaign, useUpdateCampaign } from "../../hooks";
 import { Campaign, CreateCampaign } from "../../@types/campaignTypes";
 
 interface CreateCampaignFormProps {
@@ -74,7 +74,6 @@ const CreateCampaignForm: React.FC<CreateCampaignFormProps> = ({
       <Controller
         name="name"
         control={control}
-        defaultValue=""
         render={({ field }) => (
           <CustomInput label="Campaign Name" required {...field} />
         )}
@@ -95,10 +94,9 @@ const CreateCampaignForm: React.FC<CreateCampaignFormProps> = ({
         <Controller
           name="startDate"
           control={control}
-          defaultValue=""
           render={({ field }) => (
             <CustomInput
-              isFullWidth={false}
+              isfullwidth={false}
               type="date"
               label="Start Date"
               required
@@ -109,10 +107,9 @@ const CreateCampaignForm: React.FC<CreateCampaignFormProps> = ({
         <Controller
           name="endDate"
           control={control}
-          defaultValue=""
           render={({ field }) => (
             <CustomInput
-              isFullWidth={false}
+              isfullwidth={false}
               type="date"
               label="End Date"
               required

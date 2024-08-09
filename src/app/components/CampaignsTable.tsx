@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useCampaigns, useDeleteCampaign } from "../hooks/useCampaigns";
+import { useCampaigns, useDeleteCampaign } from "../hooks";
 import {
   Table,
   TableBody,
