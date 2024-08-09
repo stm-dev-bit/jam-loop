@@ -27,7 +27,12 @@ yarn dev
 
 Open http://localhost:3000 with your browser to see the result.
 
-### Available Scripts
+### Login
+There are two users that can use to login
+- john@gmail.com : 123
+- doe@gmail.com : 456
+
+## Available Scripts
 
 - `yarn dev`: Starts the development server with hot-reloading enabled.
 - `yarn build`: Compiles the application into an optimized production build.
