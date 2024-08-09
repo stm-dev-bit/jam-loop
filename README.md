@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# JAM LOOP
+
+JAM LOOP is a [React](https://reactjs.org/) and [Next.js](https://nextjs.org/) application integrated with the CRUD API from [crudcrud.com](https://crudcrud.com/). It allows users to create, read, update, and delete campaigns. The application also includes basic authentication using local storage.
 
 ## Getting Started
 
-First, run the development server:
+### Install dependencies
+
+First, install the project dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Next, set up the environment variables:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a .env file in the root directory and add the following:
+```.env
+NEXT_PUBLIC_API_URL=https://crudcrud.com/api/14d153c073fd46899a800705e3f78c0b
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Finally, run the development server:
 
-## Learn More
+```bash
+yarn dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open http://localhost:3000 with your browser to see the result.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Available Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- `yarn dev`: Starts the development server with hot-reloading enabled.
+- `yarn build`: Compiles the application into an optimized production build.
+- `yarn start`: Runs the production build of the application.
+- `yarn lint`: Lints the codebase using ESLint to enforce coding standards.
 
-## Deploy on Vercel
+## Suggestions for Improvement
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Implement Middleware for Authentication: We can add Next.js middleware to better protect routes by ensuring only authenticated users can access certain pages.
+- Enhance Error Handling: Improve error messages on the UI for a better user experience.
+- Implement Unit Tests: Add unit tests to ensure components and logic function correctly.
+- Enhance Security Practices: Upgrade authentication to use JWT with HTTP-only cookies for improved security.
+- Improve UI/UX Design: Focus on refining the user interface and making it more responsive and visually consistent.
