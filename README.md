@@ -41,8 +41,26 @@ There are two users that can use to login
 
 ## Suggestions for Improvement
 
-- Implement Middleware for Authentication: We can add Next.js middleware to better protect routes by ensuring only authenticated users can access certain pages.
-- Enhance Error Handling: Improve error messages on the UI for a better user experience.
-- Implement Unit Tests: Add unit tests to ensure components and logic function correctly.
-- Enhance Security Practices: Upgrade authentication to use JWT with HTTP-only cookies for improved security.
-- Improve UI/UX Design: Focus on refining the user interface and making it more responsive and visually consistent.
+### Implement Middleware for Authentication
+ We can add Next.js middleware to better protect routes by ensuring only authenticated users can access certain pages.
+- Next.js Middleware: Implement middleware in Next.js to check for an authentication token or session before allowing access to specific routes. This can be done by intercepting requests and validating the user's credentials.
+- Redirects: If the user is not authenticated, the middleware can redirect them to a login page or an appropriate error page.
+- Security: This ensures that sensitive pages, such as those for managing campaigns, are only accessible to authorized users.
+Provide more informative and user-friendly error messages.
+### Enhance Error Handling
+- UI Notifications: Implement a global error handling mechanism that catches errors from API calls and displays appropriate error messages to the user. For example, if an API call fails due to network issues, the user should see a message like "Network error, please try again later."
+- Graceful Degradation: Ensure that the application fails gracefully, providing the user with alternative actions or retry options.
+- Logging: Add error logging for developers, which can include sending error details to a logging service or displaying them in the console during development.
+  
+### Implement Unit Tests
+Ensure that the application's components and logic behave as expected.
+
+- Testing Library: Use a testing library like Jest along with React Testing Library to write unit tests for your components and hooks.
+- Coverage: Focus on critical parts of the application such as the authentication flow, campaign creation/updating forms, and any custom hooks.
+- Continuous Integration: Integrate unit tests into your CI/CD pipeline so that tests are automatically run whenever new code is pushed.
+### Enhance Security Practices
+Strengthen the application’s security to better protect user data.
+- JWT Authentication: Upgrade the authentication method to use JWT (JSON Web Tokens). JWTs can be stored in HTTP-only cookies, which helps prevent XSS (Cross-Site Scripting) attacks.
+- Token Expiration: Implement token expiration and refresh tokens to enhance security.
+- HTTPS: Ensure that the application is always served over HTTPS to encrypt data in transit.
+
