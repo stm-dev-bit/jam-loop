@@ -63,4 +63,12 @@ Strengthen the application’s security to better protect user data.
 - JWT Authentication: Upgrade the authentication method to use JWT (JSON Web Tokens). JWTs can be stored in HTTP-only cookies, which helps prevent XSS (Cross-Site Scripting) attacks.
 - Token Expiration: Implement token expiration and refresh tokens to enhance security.
 - HTTPS: Ensure that the application is always served over HTTPS to encrypt data in transit.
+### Improve UI/UX Design
+Make the user interface more visually appealing and easier to use.
+- Design System: Consider implementing a design system or adopting a UI framework like Material-UI to ensure consistency across the application.
+- Responsiveness: Enhance the responsiveness of the design so that it works well on various screen sizes, including mobile devices.
+- Accessibility: Ensure that the application is accessible to all users, including those with disabilities. This includes using proper ARIA attributes, ensuring sufficient color contrast, and enabling keyboard navigation.
+- User Feedback: Implement subtle animations, tooltips, and real-time validation to improve the user experience when interacting with forms and other interactive elements.
+- Improved Input Components: For fields such as "Target Geo", "Inventory/Publishers", and "Screens/Devices", instead of using simple text inputs, consider using dropdown selects or multi-select components.
+- Dropdown and Multi-Select Components: These components enhance the user experience by reducing input errors, guiding the user with predefined options, and making the form more interactive and user-friendly.
 
